@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserMapper">
+  <select id="getUserInfo" parameterType="hashMap" resultType="com.login.backend.model.User">
+    SELECT *
+      FROM user WHERE USER_ID = #{user_id}
+  </select>
+
+  <insert id="joinUser" parameterType="hashmap">
+    INSERT INTO user
+    (
+      user_id
+      ,user_nm
+      ,user_passwd
+      ,user_email
+      ,user_tel
+    ) 
+    values
+    (
+      #{user_id}
+      ,#{user_nm}
+      ,#{user_passwd}
+      ,#{user_email}
+      ,#{user_tel}
+    )
+  </insert>
+  <select id="getUserList" resultType="com.login.backend.model.User">
+    SELECT * FROM user
+  </select>
+  <delete id = "deleteUser">
+    DELETE FROM user
+      WHERE USER_ID = #{user_id}
+  </delete>
+
+  <update id = "changeUserPasswd" parameterType="hashMap">
+    UPDATE user
+      SET user_passwd = #{user_passwd}
+    WHERE user_id = #{user_id}
+  </update>
+
+</mapper>
+
+
